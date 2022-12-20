@@ -1,0 +1,91 @@
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import { FC } from 'react';
+
+interface Props {
+  children: JSX.Element;
+  title: string;
+}
+
+const Layout: FC<Props> = ({ children, title = 'Welcome!' }): JSX.Element => {
+  return (
+    <div className="flex flex-col justify-center items-center min-h-screen text-gray-600 text-sm font-mono">
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <header>
+        <nav className="bg-gray-800 w-screen">
+          <div className="flex items-center pl-8 h-14">
+            <div className="flex space-x-4">
+              <Link href="/">
+                <a
+                  data-testid="home-nav"
+                  className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+                >
+                  Home
+                </a>
+              </Link>
+              <Link href="/local-state-a">
+                <a
+                  data-testid="makevar-nav"
+                  className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+                >
+                  makeVar
+                </a>
+              </Link>
+              <Link href="/hasura-main">
+                <a
+                  data-testid="fetchpolicy-nav"
+                  className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+                >
+                  fetchPolicy(hasura)
+                </a>
+              </Link>
+              <Link href="/hasura-crud">
+                <a
+                  data-testid="crud-nav"
+                  className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+                >
+                  CRUD(hasura)
+                </a>
+              </Link>
+              <Link href="/hasura-ssg">
+                <a
+                  data-testid="ssg-nav"
+                  className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+                >
+                  SSG+ISR(hasura)
+                </a>
+              </Link>
+              <Link href="/hooks-memo">
+                <a
+                  data-testid="memo-nav"
+                  className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+                >
+                  custom hook + memo
+                </a>
+              </Link>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <main className="flex flex-1 flex-col justify-center items-center w-screen">
+        {children}
+      </main>
+      <footer className="flex h-24 w-full items-center justify-center border-t">
+        <a
+          className="flex items-center justify-center gap-2"
+          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by{' '}
+          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+        </a>
+      </footer>
+    </div>
+  );
+};
+
+export default Layout;
